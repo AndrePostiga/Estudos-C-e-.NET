@@ -5,7 +5,7 @@
 
 
 variables:
-  someVariable: 1.0.0
+  someVariable: '1.0.0'
 
 trigger:
 - main
