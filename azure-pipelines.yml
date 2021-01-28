@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+
+stages:
+- stage: counter
+  jobs:
+  - job: TestCounter
+    workspace:
+      clean: all
+    variables:
+      someVariable: '1.0.0' 
+      current_counter: $[counter(variables['someVariable'], 1)] 
+      #Branch name is the last path segment in the ref ex: refs/heads/release/1.0.1 will be 1.0.1
+    steps:
+    - script: |
+        echo Hello, world! 
+        echo $(someVariable)
+      displayName: 'Run a one-line script'  
+
